@@ -1,15 +1,14 @@
 import { Collection } from "discord.js";
-import { CommandObject } from "../utils/Command.type";
-
-import artCritic from "./art-critic";
-import channelUse from "./channel-use";
-import emote from "./emotes";
-import heavyTopics from "./heavy-topics";
-import insults from "./insults";
-import language from "./language";
-import mods from "./mods";
-import nsfw from "./nsfw";
-import respect from "./respect";
+import { CommandObject } from "./utils/Command.type";
+import artCritic from "./rules/art-critic";
+import channelUse from "./rules/channel-use";
+import emote from "./rules/emotes";
+import heavyTopics from "./rules/heavy-topics";
+import insults from "./rules/insults";
+import language from "./rules/language";
+import mods from "./rules/mods";
+import nsfw from "./rules/nsfw";
+import respect from "./rules/respect";
 
 const modules = [
   artCritic,

@@ -1,9 +1,14 @@
 import { SlashCommandBuilder, CommandInteraction } from "discord.js";
+import { CommandObject } from "../utils/Command.type";
 
-export const data: SlashCommandBuilder = new SlashCommandBuilder().setName('art-critics').setDescription('Quotes the art critics rule');
-export const execute = async (interaction: CommandInteraction) => {
-  await interaction.reply(`
+const config: CommandObject = {
+  data: new SlashCommandBuilder().setName('art-critic').setDescription('Quotes the art critic rule'),
+  execute: async (interaction: CommandInteraction) => {
+    await interaction.reply(`
 >>> ❌ **NO** art critic unless specifically asked for it and be respectful
 ❌ **PAS** de critique d'art à moins d'une demande explicite, restez respectueux
 `);
+  },
 };
+
+export default config;

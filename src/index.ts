@@ -1,10 +1,10 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { token } from "./variables";
-import getCommands from "./commands";
+import getCommands from "./commands/commands";
 import deploy from "./deploy";
 
 async function start() {
-  const commands = await getCommands();
+  const commands = getCommands();
 
   await deploy([...commands.values()]);
 
