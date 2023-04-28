@@ -1,14 +1,22 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { token } from "./variables";
 import getCommands from "./commands/commands";
+import startTwitterBot from "./twitter/api";
 import deploy from "./deploy";
+import { CustomEvents } from "./constants/event";
+import { GOOBOT_TEXTING_CHANNEL_ID, TWEETS_CHANNEL_ID } from "./constants/channel";
 
-async function start() {
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent,
+  ],
+});
+
+async function startDiscordBot() {
   const commands = getCommands();
 
   await deploy([...commands.values()]);
-
-  const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
   client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
@@ -32,7 +40,17 @@ async function start() {
     }
   });
 
-  client.login(token);
+  client.on(CustomEvents.Tweet, async (text: string) => {
+    const channel = await client.channels.fetch(TWEETS_CHANNEL_ID);
+
+    if (channel?.isTextBased()) {
+      channel.send(text).then(console.log);
+    }
+  });
+
+  await client.login(token);
+
+  startTwitterBot(client);
 }
 
-start();
+startDiscordBot();
