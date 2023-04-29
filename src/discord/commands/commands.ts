@@ -1,5 +1,4 @@
 import { Collection } from "discord.js";
-import { CommandObject } from "./utils/Command.type";
 import artCritic from "./rules/art-critic";
 import channelUse from "./rules/channel-use";
 import emote from "./rules/emotes";
@@ -9,6 +8,7 @@ import language from "./rules/language";
 import mods from "./rules/mods";
 import nsfw from "./rules/nsfw";
 import respect from "./rules/respect";
+import GoobotCommand from "./utils/GoobotCommand.class";
 
 const modules = [
   artCritic,
@@ -22,14 +22,12 @@ const modules = [
   respect,
 ];
 
-export default function () {
-  const commands = new Collection<string, CommandObject>();
+const commands = new Collection<string, GoobotCommand>();
 
-  for (const module of modules) {
-    console.log(`[${module.data.name}] ${module.data.description}`);
+for (const module of modules) {
+  console.log(`[${module.name}] ${module.description}`);
 
-    commands.set(module.data.name, module);
-  }
-
-  return commands;
+  commands.set(module.name, module);
 }
+
+export default commands;

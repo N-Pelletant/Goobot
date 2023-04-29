@@ -1,9 +1,10 @@
-import { SlashCommandBuilder, CommandInteraction } from "discord.js";
-import { NSFW_CHANNEL_ID } from "../../constants/channel";
+import { NSFW_CHANNEL_ID } from "../../../constants/channel";
+import GoobotCommand from "../utils/GoobotCommand.class";
 
-const config = {
-  data: new SlashCommandBuilder().setName('nsfw').setDescription('Quotes the nsfw rule'),
-  execute: async (interaction: CommandInteraction) => {
+export default new GoobotCommand()
+  .setName('nsfw')
+  .setDescription('Quotes the nsfw rule')
+  .setAction(async (interaction) => {
     const nsfwId = interaction.guild?.channels.cache.get(NSFW_CHANNEL_ID)?.toString();
 
     if (nsfwId) {
@@ -18,8 +19,4 @@ const config = {
 >>> ❌ **NO** NSFW outside of the nsfw channels
 ❌ **PAS** de NSFW en dehors des channels nsfw
 `);
-
-  }
-};
-
-export default config;
+  });
