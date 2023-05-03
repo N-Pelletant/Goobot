@@ -6,9 +6,9 @@ interface TweetSearchResponseDataField {
 
 interface TweetSearchResponseMetaField {
   newest_id: string,
-  oldest_id: string,
   result_count: number,
-  next_token: string,
+  // oldest_id: string,
+  // next_token: string,
 }
 
 export interface TweetSearchResponse {
