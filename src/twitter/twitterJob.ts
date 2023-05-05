@@ -23,7 +23,7 @@ export default async (client: Client<boolean>) => {
       lastTweetId = meta.newest_id;
 
       data.forEach(tweet => {
-        client.emit(CustomEvents.Tweet, `https://twitter.com/Nifrit5/status/${tweet.id}?t=wBfppHzFDtv0LdfU0PLsqg&s=19`);
+        client.emit(CustomEvents.Tweet, `https://twitter.com/Nifrit5/status/${tweet.id}`);
       });
     }
   }, 15_000);
